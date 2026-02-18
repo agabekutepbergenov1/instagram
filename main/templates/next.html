@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram • Error</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD */
+.card {
+    background: #fff;
+    width: 100%;
+    max-width: 380px;
+    border-radius: 18px;
+    padding: 35px 25px 40px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* LOGO */
+.logo {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff,
+        #ffffff,
+        #ffffff,
+        #ffffff
+    );
+    /* -webkit-background-clip: text; */
+    -webkit-text-fill-color: transparent;
+}
+
+/* ICON */
+.icon {
+    font-size: 80px;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* TITLE */
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #262626;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.text {
+    font-size: 14px;
+    color: #8e8e8e;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+/* BUTTON */
+.btn {
+    display: block;
+    width: 100%;
+    background: linear-gradient(
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
+    );
+    color: #fff;
+    padding: 11px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+/* SMALL LINK */
+.small-link {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #0095f6;
+    cursor: pointer;
+}
+
+.small-link:hover {
+    text-decoration: underline;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 35px;
+    font-size: 12px;
+    color: #bdbdbd;
+}
+
+/* MOBILE */
+/* @media (max-width: 420px) {
+    .card {
+        border-radius: 14px;
+        padding: 30px 20px;
+    }
+} */
+@media (max-width: 450px) {
+    .instagram-logo {
+        width: 160px;
+        height: 46px;
+    }
+}
+
+.instagram-logo {
+    background-image: url(https://static.cdninstagram.com/rsrc.php/v4/yz/r/H_-3Vh0lHeK.png);
+    background-position: 0px -2907px;
+    background-size: auto;
+    width: 175px;
+    height: 51px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    filter: brightness(0) saturate(100%);
+    margin: 0 auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="instagram-logo"></div>
+
+    <div class="icon">⚠️</div>
+
+    <div class="title">Something went wrong</div>
+
+    <div class="text">
+        We couldn’t load this page.<br>
+        Please check your internet connection or try again later.
+    </div>
+
+    <a href="/" class="btn">Go back to Instagram</a>
+
+    <div class="small-link">Report a problem</div>
+
+    <div class="footer">
+        © 2025 Instagram from Meta
+    </div>
+</div>
+
+</body>
+</html>
